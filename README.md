@@ -18,7 +18,7 @@ If you're on Windows like I am, you can probably just use `gradlew`. If you want
 
 ## License
 
-No one cares.
+Good ol' MIT. 
 
 ## Acknowledgments
 
