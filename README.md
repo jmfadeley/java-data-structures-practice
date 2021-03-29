@@ -1,4 +1,4 @@
-# Java Data Structure Practice
+# Java Homework
 
 A simple set of Java data structures with JUnit tests to illustrate. Target is OpenJDK 8, but 11 is fine.
 
