@@ -19,9 +19,15 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
-    compileOnly 'org.slf4j:slf4j-api:1.7.26'
+    implementation 'org.slf4j:slf4j-api:1.7.29'
+    testImplementation 'ch.qos.logback:logback-classic:1.1.7' // Use gradle(w) with -i to nab STANDARD_OUT in logs.
 }
 
 test {
     useJUnitPlatform()
+
+    testlogger {
+        theme 'standard'
+    	showStandardStreams false
+    }
 }

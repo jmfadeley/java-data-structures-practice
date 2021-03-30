@@ -1,4 +1,4 @@
-package patterns.builder;
+package patterns.builder.manual;
 
 import lombok.extern.slf4j.Slf4j;
 
