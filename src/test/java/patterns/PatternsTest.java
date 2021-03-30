@@ -12,6 +12,8 @@ import patterns.factory.*;
 import patterns.observer.manual.*;
 import patterns.observer.observable.*;
 import patterns.observer.pcl.*;
+import patterns.singleton.enumeration.EnumInstance;
+import patterns.singleton.unsafe.UnsafeInstance;
 
 @DisplayName("Patterns test")
 public class PatternsTest
@@ -31,6 +33,23 @@ public class PatternsTest
         Widget widget = Widget.builder().name("robo").id(5).build();
         assertEquals("robo", widget.getName());
         assertEquals(5, widget.getId());
+    }
+
+    @DisplayName("Decorator pattern.")
+    @Test
+    public void testDecorator() { // This feels like a good thing to combine with a builder?
+        Burger burger1 = new Tomatoes(new Lettuce(new BurgerImpl()));
+        assertEquals("Patty on a bun with lettuce with tomatoes", burger1.topWith());
+
+        Burger burger2 = new Cheese(new Cheese(new Lettuce(new BurgerImpl())));
+        assertEquals("Patty on a bun with lettuce with cheese with cheese", burger2.topWith());
+    }
+
+    @DisplayName("Factory pattern.") // This is not abstract factory.
+    @Test // See for more: https://stackoverflow.com/questions/5739611/what-are-the-differences-between-abstract-factory-and-factory-design-patterns
+    public void testFactory() { 
+        Pet beagle = new Pet("Fred", 10, BreedFactory.create("Beagle"));
+        assertEquals(15, beagle.getBreed().getMaxLifeSpan());
     }
 
     @DisplayName("Observer pattern, manual approach.")
@@ -66,20 +85,24 @@ public class PatternsTest
         assertEquals("Film at 11. Die Hard.", observer.getNews());
     }
 
-    @DisplayName("Decorator pattern.")
+    @DisplayName("Singleton pattern, not thread-safe instance.")
     @Test
-    public void testDecorator() { // This feels like a good thing to combine with a builder?
-        Burger burger1 = new Tomatoes(new Lettuce(new BurgerImpl()));
-        assertEquals("Patty on a bun with lettuce with tomatoes", burger1.topWith());
+    public void testSingletonUnsafeInstance() {
+        UnsafeInstance instance1 = UnsafeInstance.getInstance();
+        assertEquals(1, instance1.getTimesInitialized());
 
-        Burger burger2 = new Cheese(new Cheese(new Lettuce(new BurgerImpl())));
-        assertEquals("Patty on a bun with lettuce with cheese with cheese", burger2.topWith());
+        UnsafeInstance instance2 = UnsafeInstance.getInstance();
+        assertEquals(2, instance1.getTimesInitialized());
+        assertEquals(2, instance2.getTimesInitialized());
     }
 
-    @DisplayName("Factory pattern.")
+    @DisplayName("Singleton pattern, thread-safe enum instance.")
     @Test
-    public void testFactory() { 
-        Pet beagle = new Pet("Fred", 10, BreedFactory.create("Beagle"));
-        assertEquals(15, beagle.getBreed().getMaxLifeSpan());
+    public void testSingletonEnumInstance() {
+        EnumInstance instance = EnumInstance.INSTANCE.getInstance();
+        assertEquals("My twin was delicious", instance.getInfo());
+
+        instance.setInfo("Woot");
+        assertEquals("Woot", instance.getInfo());
     }
 }
