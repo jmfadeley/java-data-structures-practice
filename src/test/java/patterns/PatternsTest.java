@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import patterns.builder.lombok.Widget;
 import patterns.builder.manual.*;
 import patterns.observer.manual.*;
-import patterns.observer.observable.ONewsAgency;
-import patterns.observer.observable.ONewsChannel;
+import patterns.observer.observable.*;
+import patterns.observer.pcl.*;
 
 @DisplayName("Patterns test")
 public class PatternsTest
  {
     
-    @DisplayName("Test of builder pattern, manual approach.")
+    @DisplayName("Builder pattern, manual approach.")
     @Test
     public void testBuilderManual() {
         User guy = new User.Builder("Rico", "Suavez").age(25).phone("555-555-5555").build();
@@ -23,7 +23,7 @@ public class PatternsTest
         assertEquals(25, guy.getAge());
     }
 
-    @DisplayName("Test of builder pattern with Lombok's annotation.")
+    @DisplayName("Builder pattern, Lombok's annotation.")
     @Test
     public void testBuilderLombok() {
         Widget widget = Widget.builder().name("robo").id(5).build();
@@ -31,7 +31,7 @@ public class PatternsTest
         assertEquals(5, widget.getId());
     }
 
-    @DisplayName("Test of observer pattern, manual approach.")
+    @DisplayName("Observer pattern, manual approach.")
     @Test
     public void testObserverManual() {
         Publisher observable = new Publisher();
@@ -42,7 +42,7 @@ public class PatternsTest
         assertEquals("book release", observer.getNews());
     }
 
-    @DisplayName("Test of observer pattern, using Java's Observable util.")
+    @DisplayName("Observer pattern, Java's Observable. Note: Deprecated since Java 9.")
     @Test
     public void testObserverObservable() {
         ONewsAgency observable = new ONewsAgency();
@@ -51,5 +51,16 @@ public class PatternsTest
         observable.addObserver(observer);
         observable.setNews("frank eats a dozen hotdogs");
         assertEquals("frank eats a dozen hotdogs", observer.getNews());
+    }
+
+    @DisplayName("Observer pattern, PropertyChangeSupport & PropertyChangeListener.")
+    @Test
+    public void testObserverPropertyChange() {
+        PCLNewsAgency observable = new PCLNewsAgency();
+        PCLNewsChannel observer = new PCLNewsChannel();
+
+        observable.addPropertyChangeListener(observer);
+        observable.setNews("film at 11. Die Hard.");
+        assertEquals("film at 11. Die Hard.", observer.getNews());
     }
 }

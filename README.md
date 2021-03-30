@@ -1,7 +1,8 @@
 # Java Homework
 
 A simple set of Java data structures and design patterns with JUnit tests to illustrate. 
-Design patterns apply multiple instantiation techniques, such as manual, Java Utilities or Lombok approaches. Look at the package to tell you which is being employed.
+Design patterns apply multiple instantiation techniques, such as manual approaches, Java Utilities or sweet, sweet Lombok annotation. Look at the package to tell you which is being employed.
+
 Target is OpenJDK 8, but 11 should be just fine.
 
 ## Getting Started

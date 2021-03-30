@@ -3,7 +3,6 @@ package patterns.observer.manual;
 import java.util.ArrayList;
 import java.util.List;
 
-// Instead of 
 public class Publisher {
     private String news;
     private List<Subscription> subscriptions = new ArrayList<>();
