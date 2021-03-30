@@ -8,13 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import patterns.builder.lombok.Widget;
 import patterns.builder.manual.*;
 import patterns.decorator.*;
+import patterns.factory.*;
 import patterns.observer.manual.*;
 import patterns.observer.observable.*;
 import patterns.observer.pcl.*;
 
 @DisplayName("Patterns test")
 public class PatternsTest
- {
+{
     
     @DisplayName("Builder pattern, manual approach.")
     @Test
@@ -67,11 +68,18 @@ public class PatternsTest
 
     @DisplayName("Decorator pattern.")
     @Test
-    public void testDecorator() {
+    public void testDecorator() { // This feels like a good thing to combine with a builder?
         Burger burger1 = new Tomatoes(new Lettuce(new BurgerImpl()));
         assertEquals("Patty on a bun with lettuce with tomatoes", burger1.topWith());
 
         Burger burger2 = new Cheese(new Cheese(new Lettuce(new BurgerImpl())));
         assertEquals("Patty on a bun with lettuce with cheese with cheese", burger2.topWith());
+    }
+
+    @DisplayName("Factory pattern.")
+    @Test
+    public void testFactory() { 
+        Pet beagle = new Pet("Fred", 10, BreedFactory.create("Beagle"));
+        assertEquals(15, beagle.getBreed().getMaxLifeSpan());
     }
 }
