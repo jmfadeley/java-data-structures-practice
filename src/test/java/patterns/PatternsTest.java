@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import patterns.builder.lombok.Widget;
 import patterns.builder.manual.*;
+import patterns.decorator.*;
 import patterns.observer.manual.*;
 import patterns.observer.observable.*;
 import patterns.observer.pcl.*;
@@ -60,7 +61,17 @@ public class PatternsTest
         PCLNewsChannel observer = new PCLNewsChannel();
 
         observable.addPropertyChangeListener(observer);
-        observable.setNews("film at 11. Die Hard.");
-        assertEquals("film at 11. Die Hard.", observer.getNews());
+        observable.setNews("Film at 11. Die Hard.");
+        assertEquals("Film at 11. Die Hard.", observer.getNews());
+    }
+
+    @DisplayName("Decorator pattern.")
+    @Test
+    public void testDecorator() {
+        Burger burger1 = new Tomatoes(new Lettuce(new BurgerImpl()));
+        assertEquals("Patty on a bun with lettuce with tomatoes", burger1.topWith());
+
+        Burger burger2 = new Cheese(new Cheese(new Lettuce(new BurgerImpl())));
+        assertEquals("Patty on a bun with lettuce with cheese with cheese", burger2.topWith());
     }
 }
