@@ -13,6 +13,7 @@ import patterns.observer.manual.*;
 import patterns.observer.observable.*;
 import patterns.observer.pcl.*;
 import patterns.singleton.enumeration.EnumInstance;
+import patterns.singleton.synced.SyncedInstance;
 import patterns.singleton.unsafe.UnsafeInstance;
 
 @DisplayName("Patterns test")
@@ -99,10 +100,31 @@ public class PatternsTest
     @DisplayName("Singleton pattern, thread-safe enum instance.")
     @Test
     public void testSingletonEnumInstance() {
-        EnumInstance instance = EnumInstance.INSTANCE.getInstance();
-        assertEquals("My twin was delicious", instance.getInfo());
+        EnumInstance instance1 = EnumInstance.INSTANCE.getInstance();
+        assertEquals("My twin was delicious", instance1.getInfo());
 
-        instance.setInfo("Woot");
-        assertEquals("Woot", instance.getInfo());
+        EnumInstance instance2 = EnumInstance.INSTANCE.getInstance();
+        instance2.setInfo("Woot"); 
+
+        assertEquals("Woot", instance1.getInfo());
+        assertEquals("Woot", instance2.getInfo());
     }
+
+    // TODO: Rewrite this to actually use threads.
+    @DisplayName("Singleton pattern, thread-safe synchronized instance.")
+    @Test
+    public void testSingletonSyncInstance() {
+        SyncedInstance instance1 = SyncedInstance.getInstance();
+        assertEquals("My twin was delicious", instance1.getInfo());
+
+        SyncedInstance instance2 = SyncedInstance.getInstance();
+        instance2.setInfo("Woot"); 
+
+        assertEquals("Woot", instance1.getInfo());
+        assertEquals("Woot", instance2.getInfo());
+    }
+
+    // TODO: Figure out Abstract Factory pattern and place here.
+
+    // TODO: Figure out Facade pattern and place here.
 }

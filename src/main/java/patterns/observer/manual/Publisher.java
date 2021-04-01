@@ -3,6 +3,11 @@ package patterns.observer.manual;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PS, for a JavaScript library that uses Observers (for data streams
+ * and propagation of change), check out https://rxjs-dev.firebaseapp.com/guide/observable 
+ * which Angular uses, but is separate from their framework.
+ */
 public class Publisher {
     private String news;
     private List<Subscription> subscriptions = new ArrayList<>();
