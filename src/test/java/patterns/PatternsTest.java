@@ -16,7 +16,7 @@ import patterns.singleton.enumeration.EnumInstance;
 import patterns.singleton.synced.SyncedInstance;
 import patterns.singleton.unsafe.UnsafeInstance;
 
-@DisplayName("Patterns test")
+@DisplayName("Patterns testing.")
 public class PatternsTest
 {
     
