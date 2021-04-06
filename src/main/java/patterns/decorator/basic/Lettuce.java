@@ -1,4 +1,4 @@
-package patterns.decorator;
+package patterns.decorator.basic;
 
 public class Lettuce extends BurgerDecorator {
     private static final String TOPPING = " with lettuce";

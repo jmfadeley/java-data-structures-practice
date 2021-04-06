@@ -1,4 +1,4 @@
-package patterns.decorator;
+package patterns.decorator.basic;
 
 /**
  * Truth be told, I'm not certain how useful decorators are given the preference for composition

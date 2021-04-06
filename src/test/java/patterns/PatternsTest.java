@@ -5,9 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import patterns.builder.lombok.Widget;
 import patterns.builder.manual.*;
-import patterns.decorator.*;
+import patterns.decorator.basic.*;
+import patterns.decorator.forwarding.InstrumentedSet;
 import patterns.factory.*;
 import patterns.observer.manual.*;
 import patterns.observer.observable.*;
@@ -36,14 +40,27 @@ public class PatternsTest
         assertEquals(5, widget.getId());
     }
 
-    @DisplayName("Decorator pattern.")
+    @DisplayName("Decorator pattern, basic approach that implements new objects.")
     @Test
-    public void testDecorator() { // This feels like a good thing to combine with a builder?
+    public void testDecoratorBasic() { // This feels like a good thing to combine with a builder?
         Burger burger1 = new Tomatoes(new Lettuce(new BurgerImpl()));
         assertEquals("Patty on a bun with lettuce with tomatoes", burger1.topWith());
 
         Burger burger2 = new Cheese(new Cheese(new Lettuce(new BurgerImpl())));
         assertEquals("Patty on a bun with lettuce with cheese with cheese", burger2.topWith());
+    }
+
+    @DisplayName("Decorator pattern, forwarding approach that both wraps and extends functionality.")
+    @Test
+    public void testDecoratorForwarding() {
+        InstrumentedSet<String> nameSet = new InstrumentedSet<>(new HashSet<>());
+        nameSet.add("Tom");
+        nameSet.addAll(Arrays.asList("Steve", "Marvin", "Marvin"));
+        assertEquals(4, nameSet.getCount());
+        nameSet.addAll(Arrays.asList("Steve", "Steve", "Steven"));
+        assertEquals(7, nameSet.getCount());
+        assertEquals(4, nameSet.size());
+
     }
 
     @DisplayName("Factory pattern.") // This is not abstract factory.

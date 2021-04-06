@@ -1,7 +1,11 @@
 # Java Homework
 
-A simple set of Java data structures and design patterns with JUnit tests to illustrate. 
+A simple set of Java data structures, lessons and design patterns with JUnit tests to illustrate. 
 Design patterns apply multiple instantiation techniques, such as manual approaches, Java Utilities or sweet, sweet Lombok annotation. Look at the package to tell you which is being employed.
+
+- Structures package deals with anything involving data structures. 
+- Patterns involves design patterns.
+- Lessons comes primarily from Joshua Bloch's Effective Java Third Edition.
 
 Target is OpenJDK 8, but 11 should be just fine.
 
