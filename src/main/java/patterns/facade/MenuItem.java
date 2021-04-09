@@ -1,22 +1,24 @@
 package patterns.facade;
 
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.HashSet;
 
 public enum MenuItem {
-    CHEESEBURGER(new HashSet<>(Arrays.asList(Ingredient.BEEF, Ingredient.LETTUCE, Ingredient.TOMATO, Ingredient.CHEESE, Ingredient.BREAD))),
-    FISH_AND_CHIPS(new HashSet<>(Arrays.asList(Ingredient.FISH, Ingredient.POTATO))),
-    TOMATO_SOUP(new HashSet<>(Arrays.asList(Ingredient.TOMATO))),
-    ONION_SOUP(new HashSet<>(Arrays.asList(Ingredient.ONION, Ingredient.CHEESE))),
-    POTATO_SOUP(new HashSet<>(Arrays.asList(Ingredient.POTATO, Ingredient.CHEESE))),
-    SALAD(new HashSet<>(Arrays.asList(Ingredient.TOMATO, Ingredient.LETTUCE))),
-    FISH_SANDWICH(new HashSet<>(Arrays.asList(Ingredient.FISH, Ingredient.TOMATO, Ingredient.LETTUCE, Ingredient.BREAD))),
-    FRIES(new HashSet<>(Arrays.asList(Ingredient.POTATO))),
-    ONION_RINGS(new HashSet<>(Arrays.asList(Ingredient.ONION)));
+    CHEESEBURGER(EnumSet.of(Ingredient.BEEF, Ingredient.LETTUCE, Ingredient.TOMATO, Ingredient.CHEESE, Ingredient.BREAD)),
+    FISH_AND_CHIPS(EnumSet.of(Ingredient.FISH, Ingredient.POTATO)),
+    TOMATO_SOUP(EnumSet.of(Ingredient.TOMATO)),
+    ONION_SOUP(EnumSet.of(Ingredient.ONION, Ingredient.CHEESE)),
+    POTATO_SOUP(EnumSet.of(Ingredient.POTATO, Ingredient.CHEESE)),
+    SALAD(EnumSet.of(Ingredient.TOMATO, Ingredient.LETTUCE)),
+    FISH_SANDWICH(EnumSet.of(Ingredient.FISH, Ingredient.TOMATO, Ingredient.LETTUCE, Ingredient.BREAD)),
+    FRIES(EnumSet.of(Ingredient.POTATO)),
+    ONION_RINGS(EnumSet.of(Ingredient.ONION));
 
-    private HashSet<Ingredient> components;
-    private MenuItem(HashSet<Ingredient> components) {
-        this.components.addAll(components);
+    private EnumSet<Ingredient> components;
+    private MenuItem(EnumSet<Ingredient> components) {
+        this.components = components;
+        
     }
 
     @Override
