@@ -10,8 +10,8 @@ public class Customer {
     MenuItem order;
 
     public void readMenu() {
-        log.info("CHECK!");
-        // log.info(Arrays.toString(MenuItem.class.getEnumConstants()));
+        log.info(MenuItem.CHEESEBURGER.toString());
+        // log.info(Ingredient.ONION.toString());
     }
 
     public void transferMenu() {
