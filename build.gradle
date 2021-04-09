@@ -3,11 +3,16 @@ plugins {
     id 'eclipse' // I'm not using Eclipse, but it's too popular to ignore.
     // id 'io.freefair.lombok' version '5.3.0'
     id 'com.adarshr.test-logger' version '2.1.0' // For output test results in the gradlew builds.
+    id 'application'
 }
 
 group = 'sample'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+application {
+    mainClassName = 'patterns.facade.Dining'
+}
 
 repositories {
     mavenCentral()
