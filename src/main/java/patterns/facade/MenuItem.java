@@ -1,8 +1,6 @@
 package patterns.facade;
 
-import java.util.Arrays;
 import java.util.EnumSet;
-import java.util.HashSet;
 
 public enum MenuItem {
     CHEESEBURGER(EnumSet.of(Ingredient.BEEF, Ingredient.LETTUCE, Ingredient.TOMATO, Ingredient.CHEESE, Ingredient.BREAD)),
