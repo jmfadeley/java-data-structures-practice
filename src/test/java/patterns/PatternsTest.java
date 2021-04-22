@@ -12,7 +12,9 @@ import patterns.builder.lombok.Widget;
 import patterns.builder.manual.*;
 import patterns.decorator.basic.*;
 import patterns.decorator.forwarding.InstrumentedSet;
-import patterns.factory.*;
+import patterns.factory.Pet;
+import patterns.factory.data.breeds.Animal;
+import patterns.factory.simple.*;
 import patterns.observer.manual.*;
 import patterns.observer.observable.*;
 import patterns.observer.pcl.*;
@@ -63,11 +65,13 @@ public class PatternsTest
 
     }
 
-    @DisplayName("Factory pattern.") // This is not abstract factory.
+    @DisplayName("Factory pattern, simple factory.")
     @Test // See for more: https://stackoverflow.com/questions/5739611/what-are-the-differences-between-abstract-factory-and-factory-design-patterns
     public void testFactory() { 
-        Pet beagle = new Pet("Fred", 10, BreedFactory.create("Beagle"));
+        Pet beagle = new Pet("Fred", 10, DogFactory.create("Beagle"));
         assertEquals(15, beagle.getBreed().getMaxLifeSpan());
+        Animal dog = (Animal) DogFactory.create("German Shepherd");
+        assertEquals(9, dog.getMinLifeSpan());
     }
 
     @DisplayName("Observer pattern, manual approach.")

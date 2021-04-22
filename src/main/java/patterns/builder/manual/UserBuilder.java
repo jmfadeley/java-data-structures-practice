@@ -2,6 +2,10 @@ package patterns.builder.manual;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Another advantage of having this outside the class is that it can
+ * be combined with an Abstract Factory.
+ */
 @Slf4j
 public class UserBuilder {
     private final String firstName;
