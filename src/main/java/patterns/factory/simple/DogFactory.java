@@ -1,6 +1,6 @@
 package patterns.factory.simple;
 
-import patterns.factory.data.breeds.AnimalImpl;
+import patterns.factory.data.breeds.Animal;
 import patterns.factory.data.breeds.dog.Beagle;
 import patterns.factory.data.breeds.dog.DogType;
 import patterns.factory.data.breeds.dog.GermanShepherd;
@@ -14,7 +14,7 @@ import patterns.factory.data.breeds.dog.GreatDane;
 public class DogFactory {
     private DogFactory() { }
 
-    public static AnimalImpl create(String breedType) {
+    public static Animal create(String breedType) {
         if (DogType.BEAGLE.checkBreed(breedType)) {
             return new Beagle();
         } else if (DogType.GERMAN_SHEPHERD.checkBreed(breedType)) {

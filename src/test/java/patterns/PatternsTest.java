@@ -12,6 +12,7 @@ import patterns.builder.lombok.Widget;
 import patterns.builder.manual.*;
 import patterns.decorator.basic.*;
 import patterns.decorator.forwarding.InstrumentedSet;
+import patterns.decorator.wrong.BadInstrumentedHashSet;
 import patterns.factory.Pet;
 import patterns.factory.data.breeds.Animal;
 import patterns.factory.simple.*;
@@ -63,6 +64,22 @@ public class PatternsTest
         assertEquals(7, nameSet.getCount());
         assertEquals(4, nameSet.size());
 
+    }
+
+    @DisplayName("Decorator pattern, wrong approach by design.")
+    @Test
+    public void testDecoratorWrong() {
+        BadInstrumentedHashSet<String> nameSet = new BadInstrumentedHashSet<>();
+        nameSet.add("Tom");
+        assertEquals(1, nameSet.getAddCount());
+        nameSet.addAll(Arrays.asList("Steve", "Marvin", "Andrew"));
+        assertEquals(7, nameSet.getAddCount());
+        nameSet.addAll(Arrays.asList("Ben", "Mark", "Carl"));
+        assertEquals(13, nameSet.getAddCount());
+        assertEquals(7, nameSet.size());
+        nameSet.add("Tom");
+        assertEquals(14, nameSet.getAddCount());
+        assertEquals(7, nameSet.size());
     }
 
     @DisplayName("Factory pattern, simple factory.")
